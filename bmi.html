@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI CALCULATOR</title>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f7f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    div {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    h1 {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    input:focus {
+        border-color: #4CAF50;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: background 0.3s;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* Styles the result text */
+    #result {
+        margin-top: 20px;
+        font-weight: 600;
+        color: #444;
+        min-height: 1.2rem;
+    }
+</style>
+
+<body>
+    <div>
+        <h1>input your Bmi number</h1>
+        <input type="text" placeholder="kindly input your weight" id="inp1">
+        <input type="text" placeholder="kindly input your height" id="inp2">
+        <button onclick="generateMe()">GENERATE BMI</button>
+        <p id="result"></p>
+    </div>
+</body>
+
+</html>
+<script>
+    let input1 = document.getElementById('inp1')
+    let input2 = document.getElementById('inp2')
+    let finalResult = document.getElementById('result')
+    function generateMe() {
+        let val1 = input1.value
+        let val2 = input2.value
+        let sum = val1 / (val2 * val2)
+        console.log(sum);
+        if (!val1 || !val2) {
+            finalResult.innerHTML = 'Hey kindly input a value'
+            finalResult.style.color = 'red'
+
+        } else if (isNaN(sum)) {
+            finalResult.innerHTML = 'kindly input a numerical value'
+            finalResult.style.color = 'red'
+
+        } else if (sum >= 30) {
+            finalResult.innerHTML = `Omo you be Obese o, your BMI is '${sum}' which is 30 or more`
+            finalResult.style.color = 'red'
+
+        } else if (sum >= 25) {
+            finalResult.innerHTML = `Your are Overweight: Your BMI is '${sum}' which is  25 to 29.9`
+            finalResult.style.color = 'red'
+
+        } else if (sum >= 18.5) {
+            finalResult.innerHTML = `Your Weight is Normal: Your BMI is '${sum}' which is  18.5 to 24.9`
+            finalResult.style.color = 'green'
+
+        } else if (sum > 0) {
+            finalResult.innerHTML = `You are Underweight, try dey chop: Your BMI is '${sum}' which is less than 18.5`
+            finalResult.style.color = 'red'
+        } else {
+            finalResult.innerHTML = `your bmi is ${sum}`
+        }
+
+    }
+</script>
